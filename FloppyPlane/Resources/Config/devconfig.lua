@@ -22,7 +22,7 @@ local config =
 	-- common Sprite Kit labels
 	showsFPS = NO,
 	showsDrawCount = NO,
-	showsNodeCount = NO,
+	showsNodeCount = YES,
 
 	-- private Sprite Kit labels
 	showsCoreAnimationFPS = NO,
@@ -36,7 +36,7 @@ local config =
 	-- additional Kobold Kit labels
 	showsPhysicsShapes = NO,
 	showsNodeFrames = NO,
-	showsNodeAnchorPoints = YES,
+	showsNodeAnchorPoints = NO,
 }
 
 return config

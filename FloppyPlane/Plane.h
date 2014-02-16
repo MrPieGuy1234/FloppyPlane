@@ -18,4 +18,5 @@
 @property (nonatomic) float maxVelocity;
 
 @property (nonatomic) SKEmitterNode *smoke;
+
 @end

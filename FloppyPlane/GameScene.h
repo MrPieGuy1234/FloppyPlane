@@ -10,6 +10,7 @@
 #import "Cloud.h"
 #import "Plane.h"
 #import "Button.h"
+#import "BMGlyphLabel.h"
 @interface GameScene : KKScene
 
 @property (nonatomic, strong) Cloud *cloud1;
@@ -28,6 +29,11 @@
 @property (nonatomic) BOOL touchLeft;
 @property (nonatomic) BOOL touchRight;
 @property (nonatomic) BOOL gameHasStarted;
+@property (nonatomic) NSInteger score;
+@property (nonatomic) NSInteger highScore;
+@property (nonatomic) SKLabelNode *scoreLabel;
+@property (nonatomic) SKLabelNode *endScoreLabel;
+@property (nonatomic) SKLabelNode *highScoreLabel;
 
 - (void)startGame;
 - (void)rate;

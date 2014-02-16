@@ -37,10 +37,14 @@
         
         NSString *path = [[NSBundle mainBundle] pathForResource:@"Smoke" ofType:@"sks"];
         self.smoke = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
-        // self.smoke.position = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
         self.smoke.hidden = YES;
-        
         [self addChild:self.smoke];
+        
+        
+        // self.smoke.position = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
+        
+        
+        
     }
     return self;
 }

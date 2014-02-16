@@ -15,6 +15,7 @@
 @property (nonatomic, strong) KKSpriteNode *leftLaser;
 @property (nonatomic, strong) KKSpriteNode *rightLaser;
 @property (nonatomic, strong) KKAction *moveDown;
+@property (nonatomic, strong) SKSpriteNode *scoreBody;
 
 @property (nonatomic) float screenWidth;
 @property (nonatomic) float screenHeight;

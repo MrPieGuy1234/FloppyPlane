@@ -17,6 +17,10 @@
         self.leftWall = [KKSpriteNode spriteNodeWithImageNamed:[self convertImage:@"laserLeft"]];
         self.leftLaser = [KKSpriteNode spriteNodeWithImageNamed:[self convertImage:@"laser"]];
         self.rightLaser = [KKSpriteNode spriteNodeWithImageNamed:[self convertImage:@"laser"]];
+        self.scoreBody = [SKSpriteNode spriteNodeWithColor:[UIColor whiteColor] size:[self convertSize:CGSizeMake(55, 55)]];
+        self.scoreBody.hidden = YES;
+        self.scoreBody.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.scoreBody.frame.size];
+        self.scoreBody.physicsBody.dynamic = NO;
 
         self.leftLaser.size = [self convertSize:CGSizeMake(320, 64)];
         self.rightLaser.size = [self convertSize:CGSizeMake(320, 64)];
@@ -31,11 +35,13 @@
             self.rightWall.position = CGPointMake(56, 0);
             self.leftLaser.position = CGPointMake(-440, 0);
             self.rightLaser.position = CGPointMake(440, 0);
+            self.scoreBody.position = CGPointMake(0, 50);
         } else {
             self.leftWall.position = CGPointMake(-28, 0);
             self.rightWall.position = CGPointMake(28, 0);
             self.leftLaser.position = CGPointMake(-220, 0);
             self.rightLaser.position = CGPointMake(220, 0);
+            self.scoreBody.position = CGPointMake(0, 100);
         }
         
         self.leftLaser.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.leftLaser.frame.size];
@@ -53,6 +59,7 @@
         [self addChild:self.rightLaser];
         [self addChild:self.leftLaser];
         [self runAction:self.moveDown];
+        [self addChild:self.scoreBody];
 
     }
     return self;
