@@ -39,6 +39,11 @@
             self.rightLaser.position = CGPointMake(220, 0);
         }
         
+        self.leftLaser.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.leftLaser.frame.size];
+        self.rightLaser.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.rightLaser.frame.size];
+        self.leftLaser.physicsBody.dynamic = NO;
+        self.rightLaser.physicsBody.dynamic = NO;
+        
         self.moveDown = [KKAction moveByX:0 y:-(height+300) duration:4.25];
         
         [self addChild:self.rightWall];

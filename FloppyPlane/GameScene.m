@@ -14,9 +14,14 @@
 #define IS_WIDESCREEN (fabs((double)[[UIScreen mainScreen]bounds].size.height - (double)568 ) < DBL_EPSILON)
 @implementation GameScene
 
+static const uint32_t shipCategory = 0x1 << 0;
+static const uint32_t laserCategory = 0x1 << 1;
+static const uint32_t wallCategory = 0x1 << 2;
+
 - (id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
         self.backgroundColor = [UIColor colorWithRed:0 green:.7 blue:1 alpha:1];
+        self.physicsWorld.contactDelegate = self;
         
         self.cloud1 = [[Cloud alloc] initWithImageNamed:[self convertImage:@"cloud60"] sceneWidth:self.frame.size.width sceneHeight:self.frame.size.height];
         self.cloud2 = [[Cloud alloc] initWithImageNamed:[self convertImage:@"cloud60"] sceneWidth:self.frame.size.width sceneHeight:self.frame.size.height];
@@ -34,8 +39,12 @@
         self.rateButton = [[Button alloc] initWithImageNamed:[self convertImage:@"rateButton"] function:@selector(rate)];
         self.rateButton.position = [self convertPoint:CGPointMake(160, 190)];
         
+        self.leaderboardButton = [[Button alloc] initWithImageNamed:[self convertImage:@"leaderboardButton"] function:@selector(displayLeaderboard)];
+        self.leaderboardButton.position = [self convertPoint:CGPointMake(160, 140)];
+        
         [self addChild:self.playButton];
         [self addChild:self.rateButton];
+        [self addChild:self.leaderboardButton];
         [self addChild:self.logo];
         [self addChild:self.cloud1];
         [self addChild:self.cloud2];
@@ -120,6 +129,9 @@
     
     self.plane = [[Plane alloc] init];
     self.plane.position = [self convertPoint:CGPointMake(160, 80)];
+    self.plane.physicsBody.categoryBitMask = shipCategory;
+    self.plane.physicsBody.contactTestBitMask = laserCategory | wallCategory;
+    self.plane.physicsBody.collisionBitMask = 0x0;
     [self addChild:self.plane];
     
     self.logo.hidden = YES;
@@ -130,6 +142,9 @@
 }
 - (void)rate {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://apple.com"]];
+}
+- (void)displayLeaderboard {
+    
 }
 - (void)generateLaser {
     if (self.gameHasStarted) {
@@ -146,6 +161,20 @@
             laser.position =  CGPointMake(randX, self.frame.size.height+100);
             [self addChild:laser];
         }
+    }
+}
+- (void)didBeginContact:(SKPhysicsContact *)contact {
+    SKPhysicsBody *firstBody, *secondBody;
+    
+    if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask) {
+        firstBody = contact.bodyA;
+        secondBody = contact.bodyB;
+    } else {
+        firstBody = contact.bodyB;
+        secondBody = contact.bodyA;
+    }
+    if ((firstBody.categoryBitMask & shipCategory) != 0 && (secondBody.categoryBitMask & laserCategory) !=0) {
+        NSLog(@"Dead!");
     }
 }
 - (CGPoint)convertPoint:(CGPoint)point {

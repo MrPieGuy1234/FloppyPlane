@@ -22,6 +22,7 @@
         self.physicsBody.affectedByGravity = NO;
         self.physicsBody.mass = .05F;
         
+        
         self.rotatePlaneRight = [KKAction rotateToAngle:-(M_PI/4) duration:.5];
         self.rotatePlaneLeft = [KKAction rotateToAngle:(M_PI/4) duration:.5];
         self.rotatePlaneNormal = [KKAction rotateToAngle:0 duration:.5];

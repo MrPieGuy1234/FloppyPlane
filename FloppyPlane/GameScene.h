@@ -19,6 +19,7 @@
 @property (nonatomic, strong) SKSpriteNode *logo;
 @property (nonatomic, strong) Button *playButton;
 @property (nonatomic, strong) Button *rateButton;
+@property (nonatomic, strong) Button *leaderboardButton;
 @property (nonatomic) NSTimeInterval lastUpdateTimeInterval;
 @property (nonatomic) NSTimeInterval timeSinceLastLaser;
 @property (nonatomic) NSTimeInterval timeSinceLastLift;
