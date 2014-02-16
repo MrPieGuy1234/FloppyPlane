@@ -13,7 +13,6 @@
 
 - (id)initWithScreenWidth:(float)width screenHeight:(float)height {
     if (self=[super init]) {
-        NSLog(@"%f", self.scene.frame.size.width);
         self.rightWall = [KKSpriteNode spriteNodeWithImageNamed:[self convertImage:@"laserRight"]];
         self.leftWall = [KKSpriteNode spriteNodeWithImageNamed:[self convertImage:@"laserLeft"]];
         self.leftLaser = [KKSpriteNode spriteNodeWithImageNamed:[self convertImage:@"laser"]];
@@ -45,6 +44,9 @@
         self.rightLaser.physicsBody.dynamic = NO;
         
         self.moveDown = [KKAction moveByX:0 y:-(height+300) duration:4.25];
+        
+        self.screenHeight = height;
+        self.screenWidth = width;
         
         [self addChild:self.rightWall];
         [self addChild:self.leftWall];

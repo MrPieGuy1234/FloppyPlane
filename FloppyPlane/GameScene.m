@@ -33,6 +33,13 @@ static const uint32_t wallCategory = 0x1 << 2;
         self.logo.size = CGSizeMake(self.logo.size.width*1.5, self.logo.size.height*1.5);
         self.logo.position = [self convertPoint:CGPointMake(160, 350)];
         
+        self.gameOver = [SKSpriteNode spriteNodeWithImageNamed:[self convertImage:@"gameover"]];
+        self.gameOver.zPosition = 999;
+        self.gameOver.texture.filteringMode = SKTextureFilteringNearest;
+        self.gameOver.size = CGSizeMake(self.logo.size.width*1.5, self.logo.size.height*1.5);
+        self.gameOver.position = [self convertPoint:CGPointMake(160, 350)];
+        self.gameOver.hidden = YES;
+        
         self.playButton = [[Button alloc] initWithImageNamed:[self convertImage:@"playButton"] function:@selector(startGame)];
         self.playButton.position = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
         
@@ -93,6 +100,12 @@ static const uint32_t wallCategory = 0x1 << 2;
         self.plane.position = CGPointMake(1, self.plane.position.y);
     }
     
+    [self enumerateChildNodesWithName:@"laser" usingBlock:^(SKNode *node, BOOL *stop) {
+        if (node.position.y <= -100) {
+            [node removeAllActions];
+            [node removeFromParent];
+        }
+    }];
     
     [super update:currentTime];
 }
@@ -127,16 +140,19 @@ static const uint32_t wallCategory = 0x1 << 2;
 - (void)startGame {
     NSLog(@"Game started!");
     
+    [[self childNodeWithName:@"plane"] removeFromParent];
     self.plane = [[Plane alloc] init];
     self.plane.position = [self convertPoint:CGPointMake(160, 80)];
     self.plane.physicsBody.categoryBitMask = shipCategory;
     self.plane.physicsBody.contactTestBitMask = laserCategory | wallCategory;
     self.plane.physicsBody.collisionBitMask = 0x0;
+    self.plane.name = @"plane";
     [self addChild:self.plane];
     
     self.logo.hidden = YES;
     self.playButton.hidden = YES;
     self.rateButton.hidden = YES;
+    self.leaderboardButton.hidden = YES;
     
     self.gameHasStarted = YES;
 }
@@ -153,15 +169,37 @@ static const uint32_t wallCategory = 0x1 << 2;
             self.lastGenOnRight = NO;
             Laser *laser = [[Laser alloc] initWithScreenWidth:self.frame.size.width screenHeight:self.frame.size.height];
             laser.position =  CGPointMake(randX, self.frame.size.height+100);
+            laser.name = @"laser";
             [self addChild:laser];
         } else {
             NSInteger randX = (int)(self.frame.size.width/2) + arc4random() % (int)((self.frame.size.width/1.2307 - self.frame.size.width/2 + 1));
             self.lastGenOnRight = YES;
             Laser *laser = [[Laser alloc] initWithScreenWidth:self.frame.size.width screenHeight:self.frame.size.height];
             laser.position =  CGPointMake(randX, self.frame.size.height+100);
+            laser.name = @"laser";
             [self addChild:laser];
         }
     }
+}
+- (void)endGame {
+    self.gameHasStarted = NO;
+    self.gameOver.hidden = NO;
+    self.playButton.hidden = NO;
+    self.rateButton.hidden = NO;
+    self.leaderboardButton.hidden = NO;
+    
+    self.gameOver.alpha = 0.0F;
+    self.playButton.alpha = 0.0F;
+    self.rateButton.alpha = 0.0F;
+    self.leaderboardButton.alpha = 0.0F;
+    
+    KKAction *gameOverFadeIn = [KKAction fadeAlphaTo:1 duration:.5];
+    
+    [self.gameOver runAction:gameOverFadeIn];
+    [self.playButton runAction:gameOverFadeIn];
+    [self.rateButton runAction:gameOverFadeIn];
+    [self.leaderboardButton runAction:gameOverFadeIn];
+    
 }
 - (void)didBeginContact:(SKPhysicsContact *)contact {
     SKPhysicsBody *firstBody, *secondBody;
@@ -174,7 +212,8 @@ static const uint32_t wallCategory = 0x1 << 2;
         secondBody = contact.bodyA;
     }
     if ((firstBody.categoryBitMask & shipCategory) != 0 && (secondBody.categoryBitMask & laserCategory) !=0) {
-        NSLog(@"Dead!");
+        self.plane.smoke.hidden = NO;
+        [self endGame];
     }
 }
 - (CGPoint)convertPoint:(CGPoint)point {

@@ -86,8 +86,10 @@
 		F10D1BA418AF116700AAF628 /* laserLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = F10D1B9E18AF116700AAF628 /* laserLeft.png */; };
 		F10D1BA518AF116700AAF628 /* laserRight-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F10D1B9F18AF116700AAF628 /* laserRight-ipad.png */; };
 		F10D1BA618AF116700AAF628 /* laserRight.png in Resources */ = {isa = PBXBuildFile; fileRef = F10D1BA018AF116700AAF628 /* laserRight.png */; };
-		F10FE62518B0750E00D47E4F /* leaderboardButton-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F10FE62318B0750E00D47E4F /* leaderboardButton-ipad.png */; };
-		F10FE62618B0750E00D47E4F /* leaderboardButton.png in Resources */ = {isa = PBXBuildFile; fileRef = F10FE62418B0750E00D47E4F /* leaderboardButton.png */; };
+		F10FE62918B0785500D47E4F /* leaderboardButton-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F10FE62718B0785500D47E4F /* leaderboardButton-ipad.png */; };
+		F10FE62A18B0785500D47E4F /* leaderboardButton.png in Resources */ = {isa = PBXBuildFile; fileRef = F10FE62818B0785500D47E4F /* leaderboardButton.png */; };
+		F10FE62D18B082CA00D47E4F /* gameover-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F10FE62B18B082CA00D47E4F /* gameover-ipad.png */; };
+		F10FE62E18B082CA00D47E4F /* gameover.png in Resources */ = {isa = PBXBuildFile; fileRef = F10FE62C18B082CA00D47E4F /* gameover.png */; };
 		F11CD09F18AEE67E007A9AAC /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = F11CD09E18AEE67E007A9AAC /* GameScene.m */; };
 		F11CD0A218AEE798007A9AAC /* Cloud.m in Sources */ = {isa = PBXBuildFile; fileRef = F11CD0A118AEE798007A9AAC /* Cloud.m */; };
 		F11CD0B918AEFD74007A9AAC /* plane-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F11CD0B718AEFD74007A9AAC /* plane-ipad.png */; };
@@ -234,8 +236,10 @@
 		F10D1B9E18AF116700AAF628 /* laserLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = laserLeft.png; sourceTree = "<group>"; };
 		F10D1B9F18AF116700AAF628 /* laserRight-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "laserRight-ipad.png"; sourceTree = "<group>"; };
 		F10D1BA018AF116700AAF628 /* laserRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = laserRight.png; sourceTree = "<group>"; };
-		F10FE62318B0750E00D47E4F /* leaderboardButton-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "leaderboardButton-ipad.png"; sourceTree = "<group>"; };
-		F10FE62418B0750E00D47E4F /* leaderboardButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leaderboardButton.png; sourceTree = "<group>"; };
+		F10FE62718B0785500D47E4F /* leaderboardButton-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "leaderboardButton-ipad.png"; path = "../leaderboardButton-ipad.png"; sourceTree = "<group>"; };
+		F10FE62818B0785500D47E4F /* leaderboardButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = leaderboardButton.png; path = ../leaderboardButton.png; sourceTree = "<group>"; };
+		F10FE62B18B082CA00D47E4F /* gameover-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gameover-ipad.png"; sourceTree = "<group>"; };
+		F10FE62C18B082CA00D47E4F /* gameover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gameover.png; sourceTree = "<group>"; };
 		F11CD09D18AEE67E007A9AAC /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
 		F11CD09E18AEE67E007A9AAC /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
 		F11CD0A018AEE798007A9AAC /* Cloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cloud.h; sourceTree = "<group>"; };
@@ -427,8 +431,10 @@
 		DCD11E39178C522300FBC406 /* FloppyPlane */ = {
 			isa = PBXGroup;
 			children = (
-				F10FE62318B0750E00D47E4F /* leaderboardButton-ipad.png */,
-				F10FE62418B0750E00D47E4F /* leaderboardButton.png */,
+				F10FE62B18B082CA00D47E4F /* gameover-ipad.png */,
+				F10FE62C18B082CA00D47E4F /* gameover.png */,
+				F10FE62718B0785500D47E4F /* leaderboardButton-ipad.png */,
+				F10FE62818B0785500D47E4F /* leaderboardButton.png */,
 				F15A1F2E18B042ED002679BB /* Smoke.sks */,
 				F15A1F2F18B042ED002679BB /* spark.png */,
 				F14BD9A818AFFF2A00B32C6A /* ipadPortrait.png */,
@@ -681,7 +687,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC0C220A17CFA1EF007FE7B8 /* Spaceship.png in Resources */,
-				F10FE62618B0750E00D47E4F /* leaderboardButton.png in Resources */,
+				F10FE62A18B0785500D47E4F /* leaderboardButton.png in Resources */,
 				DC5BCDB917CF88E500A5CB01 /* Default@2x.png in Resources */,
 				DCEF82D017CFD35B00157387 /* Icon-72@2x.png in Resources */,
 				F10D1BA118AF116700AAF628 /* laser-ipad.png in Resources */,
@@ -692,7 +698,7 @@
 				DC5BCDB717CF88E500A5CB01 /* Default-Portrait~ipad.png in Resources */,
 				DC5BCDB217CF88E500A5CB01 /* iTunesArtwork in Resources */,
 				DCEF82D717CFD4AF00157387 /* Icon.png in Resources */,
-				F10FE62518B0750E00D47E4F /* leaderboardButton-ipad.png in Resources */,
+				F10FE62918B0785500D47E4F /* leaderboardButton-ipad.png in Resources */,
 				F11CD0B918AEFD74007A9AAC /* plane-ipad.png in Resources */,
 				DC5BCDB317CF88E500A5CB01 /* iTunesArtwork@2x in Resources */,
 				F14BD9A018AFE64C00B32C6A /* playButton.png in Resources */,
@@ -701,9 +707,11 @@
 				F14BD9A118AFE64C00B32C6A /* rateButton-ipad.png in Resources */,
 				DCEF831017CFDBF300157387 /* die.wav in Resources */,
 				DCEF82D117CFD35B00157387 /* Icon-Small.png in Resources */,
+				F10FE62E18B082CA00D47E4F /* gameover.png in Resources */,
 				F11CD0BE18AEFE8D007A9AAC /* cloud60.png in Resources */,
 				F10D1BA318AF116700AAF628 /* laserLeft-ipad.png in Resources */,
 				F14BD9AC18AFFF2A00B32C6A /* ipadPortrait.png in Resources */,
+				F10FE62D18B082CA00D47E4F /* gameover-ipad.png in Resources */,
 				F15A1F3018B042ED002679BB /* Smoke.sks in Resources */,
 				DC5BCDB417CF88E500A5CB01 /* Default-568h@2x.png in Resources */,
 				F10D1BA618AF116700AAF628 /* laserRight.png in Resources */,

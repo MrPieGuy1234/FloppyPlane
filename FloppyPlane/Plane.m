@@ -18,7 +18,7 @@
         self.size = [self convertSize:CGSizeMake(55, 55)];
         self.texture.filteringMode = SKTextureFilteringNearest;
         
-        self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.frame.size];
+        self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(self.frame.size.width*.4, self.frame.size.height*.4)];
         self.physicsBody.affectedByGravity = NO;
         self.physicsBody.mass = .05F;
         
@@ -35,6 +35,12 @@
             self.maxVelocity = 300;
         }
         
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"Smoke" ofType:@"sks"];
+        self.smoke = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+        // self.smoke.position = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
+        self.smoke.hidden = YES;
+        
+        [self addChild:self.smoke];
     }
     return self;
 }

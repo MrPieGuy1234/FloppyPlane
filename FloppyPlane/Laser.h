@@ -16,6 +16,9 @@
 @property (nonatomic, strong) KKSpriteNode *rightLaser;
 @property (nonatomic, strong) KKAction *moveDown;
 
+@property (nonatomic) float screenWidth;
+@property (nonatomic) float screenHeight;
+
 - (id)initWithScreenWidth:(float)width screenHeight:(float)height;
 
 @end

@@ -17,6 +17,7 @@
 @property (nonatomic, strong) Cloud *cloud3;
 @property (nonatomic, strong) Plane *plane;
 @property (nonatomic, strong) SKSpriteNode *logo;
+@property (nonatomic, strong) SKSpriteNode *gameOver;
 @property (nonatomic, strong) Button *playButton;
 @property (nonatomic, strong) Button *rateButton;
 @property (nonatomic, strong) Button *leaderboardButton;
