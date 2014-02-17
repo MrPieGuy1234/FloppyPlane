@@ -4,6 +4,19 @@
  * KoboldAid/licenses/KoboldKitFree.License.txt
  */
 
-@interface ViewController : KKViewController
+#import <GameKit/GameKit.h>
+#import "GADBannerView.h"
+#import "GADInterstitial.h"
 
+@interface ViewController : KKViewController <GKGameCenterControllerDelegate>
+
+- (void)createBannerBottomAd;
+- (void)createInterstitialAd;
+- (void)presentInterstitial;
+- (void)reloadInterstitial;
+
+
+@property (nonatomic, strong) GADBannerView *banner;
+@property (nonatomic, strong) GADInterstitial *interstitial;
+@property (nonatomic) GADRequest *request;
 @end

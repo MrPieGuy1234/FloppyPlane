@@ -35,13 +35,13 @@
             self.rightWall.position = CGPointMake(56, 0);
             self.leftLaser.position = CGPointMake(-440, 0);
             self.rightLaser.position = CGPointMake(440, 0);
-            self.scoreBody.position = CGPointMake(0, 50);
+            self.scoreBody.position = CGPointMake(0, 100);
         } else {
             self.leftWall.position = CGPointMake(-28, 0);
             self.rightWall.position = CGPointMake(28, 0);
             self.leftLaser.position = CGPointMake(-220, 0);
             self.rightLaser.position = CGPointMake(220, 0);
-            self.scoreBody.position = CGPointMake(0, 100);
+            self.scoreBody.position = CGPointMake(0, 50);
         }
         
         self.leftLaser.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.leftLaser.frame.size];

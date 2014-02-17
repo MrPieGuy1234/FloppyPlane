@@ -11,6 +11,7 @@
 #import "Plane.h"
 #import "Button.h"
 #import "BMGlyphLabel.h"
+#import "ViewController.h"
 @interface GameScene : KKScene
 
 @property (nonatomic, strong) Cloud *cloud1;
@@ -34,8 +35,10 @@
 @property (nonatomic) SKLabelNode *scoreLabel;
 @property (nonatomic) SKLabelNode *endScoreLabel;
 @property (nonatomic) SKLabelNode *highScoreLabel;
+@property (nonatomic) ViewController *parentView;
 
 - (void)startGame;
 - (void)rate;
 
+- (id)initWithSize:(CGSize)size andView:(ViewController *)view;
 @end

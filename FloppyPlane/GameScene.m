@@ -13,6 +13,8 @@
 #import "Button.h"
 #import "BMGlyphLabel.h"
 #import "BMGlyphFont.h"
+#import "GCHelper.h"
+#import "ViewController.h"
 #define IS_WIDESCREEN (fabs((double)[[UIScreen mainScreen]bounds].size.height - (double)568 ) < DBL_EPSILON)
 @implementation GameScene
 
@@ -22,7 +24,7 @@ static const uint32_t wallCategory = 0x1 << 2;
 static const uint32_t oldLaserCategory = 0x1 << 3;
 static const uint32_t scoreBodyCategory = 0x1 << 4;
 
-- (id)initWithSize:(CGSize)size {
+- (id)initWithSize:(CGSize)size andView:(ViewController *)view {
     if (self = [super initWithSize:size]) {
         self.backgroundColor = [UIColor colorWithRed:0 green:.7 blue:1 alpha:1];
         self.physicsWorld.contactDelegate = self;
@@ -53,26 +55,36 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
         self.leaderboardButton = [[Button alloc] initWithImageNamed:[self convertImage:@"leaderboardButton"] function:@selector(displayLeaderboard)];
         self.leaderboardButton.position = [self convertPoint:CGPointMake(160, 140)];
         
-        BMGlyphFont *gabsFont = [BMGlyphFont fontWithName:@"gabsPixel"];
         self.scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Futura Condensed ExtraBold"];
         self.scoreLabel.hidden = YES;
         self.scoreLabel.zPosition = 999;
         self.scoreLabel.position = [self convertPoint:CGPointMake(160, 400)];
         
-        self.endScoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Courier"];
+        self.endScoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Courier Bold"];
         self.endScoreLabel.text = [NSString stringWithFormat:@"Score: %li", (long)self.score];
         self.endScoreLabel.position = [self convertPoint:CGPointMake(100, 270)];
         self.endScoreLabel.hidden = YES;
         
-        self.highScoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Courier"];
+        self.highScoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Courier Bold"];
         self.highScoreLabel.text = [NSString stringWithFormat:@"High Score: %li", (long)self.highScore];
         self.highScoreLabel.position = [self convertPoint:CGPointMake(200, 270)];
         self.highScoreLabel.hidden = YES;
         
+        [view createBannerBottomAd];
+        [view createInterstitialAd];
+        
+        self.parentView = view;
+        
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             [self.scoreLabel setScale:4];
+            self.highScoreLabel.position = [self convertPoint:CGPointMake(210, 270)];
+            self.endScoreLabel.position = [self convertPoint:CGPointMake(90, 270)];
         } else {
             [self.scoreLabel setScale:2];
+            [self.endScoreLabel setScale:.5];
+            [self.highScoreLabel setScale:.5];
+            self.highScoreLabel.position = [self convertPoint:CGPointMake(210, 270)];
+            self.endScoreLabel.position = [self convertPoint:CGPointMake(90, 270)];
         }
         
         [self addChild:self.playButton];
@@ -114,7 +126,6 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
             if (self.plane.physicsBody.velocity.dx > self.plane.maxVelocity) {
                 self.plane.physicsBody.velocity = CGVectorMake(self.plane.maxVelocity, 0);
             }
-            NSLog(@"Right!");
             [self.plane.physicsBody applyForce:CGVectorMake(self.timeSinceLastLift*self.plane.velMultiplier, 0)];
         }
         if (self.touchLeft) {
@@ -122,7 +133,6 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
             if (self.plane.physicsBody.velocity.dx < -self.plane.maxVelocity) {
                 self.plane.physicsBody.velocity = CGVectorMake(-self.plane.maxVelocity, 0);
             }
-            NSLog(@"Left!");
             [self.plane.physicsBody applyForce:CGVectorMake(self.timeSinceLastLift*-self.plane.velMultiplier, 0)];
         }
         if (self.plane.position.x <= 0) {
@@ -172,7 +182,7 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
 }
 - (void)startGame {
     NSLog(@"Game started!");
-    
+    self.parentView.banner.hidden = YES;
     if (self.plane != nil) {
         [self.plane removeFromParent];
         self.plane = nil;
@@ -212,6 +222,7 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
 }
 - (void)displayLeaderboard {
     
+    [[GCHelper sharedInstance] showLeaderboard:self.view.window.rootViewController];
 }
 - (void)generateLaser {
     if (self.gameHasStarted) {
@@ -243,6 +254,7 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
     }
 }
 - (void)endGame {
+    self.parentView.banner.hidden = NO;
     self.gameHasStarted = NO;
     self.plane.smoke.hidden = NO;
     
@@ -280,6 +292,11 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
     [self.leaderboardButton runAction:gameOverFadeIn];
     [self.plane runAction:[SKAction sequence:@[fadePlaneOut, resetPlane]]];
     
+    [self runAction:[SKAction waitForDuration:.5] completion:^{
+        [self.parentView presentInterstitial];
+        [self.parentView createInterstitialAd];
+    }];
+    
     [self enumerateChildNodesWithName:@"laser" usingBlock:^(SKNode *node, BOOL *stop) {
         [node runAction:fadePlaneOut];
         [node removeFromParent];
@@ -288,6 +305,7 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
         // laser.rightLaser.physicsBody.contactTestBitMask = oldLaserCategory;
     }];
     
+    [[GCHelper sharedInstance] reportScore:self.score forLeaderboardID:@"highScores"];
 }
 - (void)resetPlane {
     /*

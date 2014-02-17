@@ -5,6 +5,7 @@
  */
 
 #import "AppDelegate.h"
+#import "GCHelper.h"
 
 @implementation AppDelegate
 
@@ -13,6 +14,7 @@
 {
 	BOOL returnValue = [super application:application didFinishLaunchingWithOptions:launchOptions];
 	
+    
     // Override point for customization after application launch.
     return returnValue;
 }
