@@ -12,6 +12,7 @@
 
 @property (nonatomic) CGSize originalSize;
 @property (nonatomic) SEL selector;
+@property (nonatomic) BOOL isTouched;
 
 - (id)initWithImageNamed:(NSString *)name function:(SEL)function;
 - (void)buttonPressed;

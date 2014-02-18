@@ -19,13 +19,13 @@
         self.anchorPoint = CGPointMake(.5, .5);
         
         self.selector = function;
+        self.originalSize = CGSizeMake(self.size.width, self.size.height);
 
         NSLog(@"%f %f", self.frame.size.width, self.frame.size.height);
     }
     return self;
 }
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    self.originalSize = self.size;
     if (!self.hidden) {
         for (UITouch *touch in touches) {
             CGPoint location = [touch locationInNode:self];
@@ -37,6 +37,7 @@
 }
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     if (!self.hidden) {
+        
         for (UITouch *touch in touches) {
             CGPoint location = [touch locationInNode:self];
             self.size = self.originalSize;

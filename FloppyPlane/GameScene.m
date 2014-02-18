@@ -62,29 +62,27 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
         
         self.endScoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Courier Bold"];
         self.endScoreLabel.text = [NSString stringWithFormat:@"Score: %li", (long)self.score];
-        self.endScoreLabel.position = [self convertPoint:CGPointMake(100, 270)];
+        self.endScoreLabel.position = [self convertPoint:CGPointMake(160, 270)];
         self.endScoreLabel.hidden = YES;
         
-        self.highScoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Courier Bold"];
-        self.highScoreLabel.text = [NSString stringWithFormat:@"High Score: %li", (long)self.highScore];
-        self.highScoreLabel.position = [self convertPoint:CGPointMake(200, 270)];
-        self.highScoreLabel.hidden = YES;
+        self.adCooldown = 0;
         
         [view createBannerBottomAd];
         [view createInterstitialAd];
+        
+        
+        
+        self.coinSound = [SKAction playSoundFileNamed:@"coin.wav"];
+        self.dieSound = [SKAction playSoundFileNamed:@"explosion.wav"];
         
         self.parentView = view;
         
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             [self.scoreLabel setScale:4];
-            self.highScoreLabel.position = [self convertPoint:CGPointMake(210, 270)];
-            self.endScoreLabel.position = [self convertPoint:CGPointMake(90, 270)];
+            [self.endScoreLabel setScale:2];
         } else {
             [self.scoreLabel setScale:2];
-            [self.endScoreLabel setScale:.5];
-            [self.highScoreLabel setScale:.5];
-            self.highScoreLabel.position = [self convertPoint:CGPointMake(210, 270)];
-            self.endScoreLabel.position = [self convertPoint:CGPointMake(90, 270)];
+            // [self.endScoreLabel setScale:.5];
         }
         
         [self addChild:self.playButton];
@@ -92,7 +90,6 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
         [self addChild:self.rateButton];
         [self addChild:self.leaderboardButton];
         [self addChild:self.scoreLabel];
-        [self addChild:self.highScoreLabel];
         [self addChild:self.logo];
         [self addChild:self.endScoreLabel];
         [self addChild:self.cloud1];
@@ -111,7 +108,7 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
     if (self.gameHasStarted) {
         self.timeSinceLastLaser += timeSinceLast;
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-            if (self.timeSinceLastLaser >= 1.25) {
+            if (self.timeSinceLastLaser >= .9) {
                 self.timeSinceLastLaser = 0;
                 [self generateLaser];
             }
@@ -201,7 +198,6 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
     self.leaderboardButton.hidden = YES;
     self.gameOver.hidden = YES;
     self.endScoreLabel.hidden = YES;
-    self.highScoreLabel.hidden = YES;
     
     self.scoreLabel.hidden = NO;
     self.score = 0;
@@ -254,6 +250,8 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
     }
 }
 - (void)endGame {
+    
+    [self runAction:self.dieSound];
     self.parentView.banner.hidden = NO;
     self.gameHasStarted = NO;
     self.plane.smoke.hidden = NO;
@@ -263,7 +261,6 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
     self.rateButton.hidden = NO;
     self.leaderboardButton.hidden = NO;
     
-    self.highScoreLabel.hidden = NO;
     self.endScoreLabel.hidden = NO;
     
     self.playButton.userInteractionEnabled = YES;
@@ -284,7 +281,6 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
     KKAction *resetPlane = [KKAction performSelector:@selector(resetPlane) onTarget:self];
     
     [self.endScoreLabel setText:[NSString stringWithFormat:@"Score: %li", (long)self.score]];
-    [self.highScoreLabel setText:[NSString stringWithFormat:@"High Score: %li", (long)self.highScore]];
     
     [self.gameOver runAction:gameOverFadeIn];
     [self.playButton runAction:gameOverFadeIn];
@@ -293,8 +289,12 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
     [self.plane runAction:[SKAction sequence:@[fadePlaneOut, resetPlane]]];
     
     [self runAction:[SKAction waitForDuration:.5] completion:^{
-        [self.parentView presentInterstitial];
-        [self.parentView createInterstitialAd];
+        if (self.adCooldown == 5) {
+            [self.parentView presentInterstitial];
+            [self.parentView createInterstitialAd];
+            self.adCooldown = 1;
+        }
+        
     }];
     
     [self enumerateChildNodesWithName:@"laser" usingBlock:^(SKNode *node, BOOL *stop) {
@@ -306,6 +306,8 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
     }];
     
     [[GCHelper sharedInstance] reportScore:self.score forLeaderboardID:@"highScores"];
+    
+    self.adCooldown += 1;
 }
 - (void)resetPlane {
     /*
@@ -333,6 +335,7 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
     }
     if ((firstBody.categoryBitMask & shipCategory) != 0 && (secondBody.categoryBitMask & scoreBodyCategory) !=0) {
         if (self.gameHasStarted) {
+            [self runAction:self.coinSound];
             self.score += 1;
             [self.scoreLabel setText:[NSString stringWithFormat:@"%li", (long)self.score]];
         }

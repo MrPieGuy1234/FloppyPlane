@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Steffen Itterheim. All rights reserved.
 //
 
+#import <AVFoundation/AVFoundation.h>
 #import "KKScene.h"
 #import "Cloud.h"
 #import "Plane.h"
@@ -31,11 +32,12 @@
 @property (nonatomic) BOOL touchRight;
 @property (nonatomic) BOOL gameHasStarted;
 @property (nonatomic) NSInteger score;
-@property (nonatomic) NSInteger highScore;
 @property (nonatomic) SKLabelNode *scoreLabel;
 @property (nonatomic) SKLabelNode *endScoreLabel;
-@property (nonatomic) SKLabelNode *highScoreLabel;
 @property (nonatomic) ViewController *parentView;
+@property (nonatomic, strong) SKAction *coinSound;
+@property (nonatomic, strong) SKAction *dieSound;
+@property (nonatomic) NSInteger adCooldown;
 
 - (void)startGame;
 - (void)rate;

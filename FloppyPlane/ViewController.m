@@ -11,6 +11,13 @@
 #import "GCHelper.h"
 #import "GADBannerView.h"
 #import "GADInterstitial.h"
+#import "RemoveAdsIAPHelper.h"
+
+@interface ViewController () {
+    NSArray *_products;
+}
+
+@end
 
 @implementation ViewController
 
@@ -24,6 +31,13 @@
     scene.scaleMode = SKSceneScaleModeAspectFill;
     [[GCHelper sharedInstance] authenticateLocalUser:self];
 	[self.kkView presentScene:scene];
+    
+    [[RemoveAdsIAPHelper sharedInstance] requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
+        if (success) {
+            _products = products;
+            NSLog(@"%li", (unsigned long)products.count);
+        }
+    }];
     
     self.request = [GADRequest request];
     self.request.testDevices = @[@"b41e97b13f0801f8bcc3ede1edb7437f", @"00a197fca7eb71468a015ff07eb9101b"];

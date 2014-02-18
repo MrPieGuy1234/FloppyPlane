@@ -205,6 +205,10 @@
 		F1956EDA18B1C2B7004D27D7 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1956ED918B1C2B7004D27D7 /* CoreData.framework */; };
 		F1956EE418B1D6AA004D27D7 /* removeAdsButton-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F1956EE218B1D6AA004D27D7 /* removeAdsButton-ipad.png */; };
 		F1956EE518B1D6AA004D27D7 /* removeAdsButton.png in Resources */ = {isa = PBXBuildFile; fileRef = F1956EE318B1D6AA004D27D7 /* removeAdsButton.png */; };
+		F1AD7E5918B2B04400E0E344 /* explosion.wav in Resources */ = {isa = PBXBuildFile; fileRef = F1AD7E5818B2B04400E0E344 /* explosion.wav */; };
+		F1AD7E5F18B2B34400E0E344 /* coin.wav in Resources */ = {isa = PBXBuildFile; fileRef = F1AD7E5E18B2B34400E0E344 /* coin.wav */; };
+		F1AD7E6218B2E20900E0E344 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F1AD7E6118B2E20900E0E344 /* IAPHelper.m */; };
+		F1AD7E6518B2E58600E0E344 /* RemoveAdsIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F1AD7E6418B2E58600E0E344 /* RemoveAdsIAPHelper.m */; };
 		F1ECD09818B1673000E2D966 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1ECD09718B1673000E2D966 /* FacebookSDK.framework */; };
 /* End PBXBuildFile section */
 
@@ -350,7 +354,7 @@
 		F10FE62B18B082CA00D47E4F /* gameover-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gameover-ipad.png"; sourceTree = "<group>"; };
 		F10FE62C18B082CA00D47E4F /* gameover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gameover.png; sourceTree = "<group>"; };
 		F11CD09D18AEE67E007A9AAC /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
-		F11CD09E18AEE67E007A9AAC /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
+		F11CD09E18AEE67E007A9AAC /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; usesTabs = 0; };
 		F11CD0A018AEE798007A9AAC /* Cloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cloud.h; sourceTree = "<group>"; };
 		F11CD0A118AEE798007A9AAC /* Cloud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cloud.m; sourceTree = "<group>"; };
 		F11CD0B718AEFD74007A9AAC /* plane-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "plane-ipad.png"; path = "../plane-ipad.png"; sourceTree = "<group>"; };
@@ -529,6 +533,12 @@
 		F1956ED918B1C2B7004D27D7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
 		F1956EE218B1D6AA004D27D7 /* removeAdsButton-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "removeAdsButton-ipad.png"; sourceTree = "<group>"; };
 		F1956EE318B1D6AA004D27D7 /* removeAdsButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = removeAdsButton.png; sourceTree = "<group>"; };
+		F1AD7E5818B2B04400E0E344 /* explosion.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = explosion.wav; sourceTree = "<group>"; };
+		F1AD7E5E18B2B34400E0E344 /* coin.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = coin.wav; sourceTree = "<group>"; };
+		F1AD7E6018B2E20900E0E344 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
+		F1AD7E6118B2E20900E0E344 /* IAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IAPHelper.m; sourceTree = "<group>"; };
+		F1AD7E6318B2E58600E0E344 /* RemoveAdsIAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoveAdsIAPHelper.h; sourceTree = "<group>"; };
+		F1AD7E6418B2E58600E0E344 /* RemoveAdsIAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoveAdsIAPHelper.m; sourceTree = "<group>"; };
 		F1ECD09718B1673000E2D966 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -712,6 +722,8 @@
 		DCD11E39178C522300FBC406 /* FloppyPlane */ = {
 			isa = PBXGroup;
 			children = (
+				F1AD7E5E18B2B34400E0E344 /* coin.wav */,
+				F1AD7E5818B2B04400E0E344 /* explosion.wav */,
 				F1956DE718B1BF20004D27D7 /* GoogleAdMobAdsSdkiOS-6.8.0 */,
 				F1956DE118B1B776004D27D7 /* tempIcon29.png */,
 				F1956EE218B1D6AA004D27D7 /* removeAdsButton-ipad.png */,
@@ -754,6 +766,10 @@
 				DCD7EC49178C573500BBAFB0 /* ViewController.m */,
 				F11CD09D18AEE67E007A9AAC /* GameScene.h */,
 				F11CD09E18AEE67E007A9AAC /* GameScene.m */,
+				F1AD7E6018B2E20900E0E344 /* IAPHelper.h */,
+				F1AD7E6118B2E20900E0E344 /* IAPHelper.m */,
+				F1AD7E6318B2E58600E0E344 /* RemoveAdsIAPHelper.h */,
+				F1AD7E6418B2E58600E0E344 /* RemoveAdsIAPHelper.m */,
 				F14BD98218AF22C000B32C6A /* Plane.h */,
 				F14BD98318AF22C000B32C6A /* Plane.m */,
 				F10D1B9818AF0FDE00AAF628 /* Laser.h */,
@@ -1314,6 +1330,7 @@
 				F1956E8318B1BF21004D27D7 /* CuteAnimals-Info.plist in Resources */,
 				DC5BCDAA17CF88E500A5CB01 /* Icon~ipad.png in Resources */,
 				F1956EB718B1BF21004D27D7 /* Monkey-3.jpg in Resources */,
+				F1AD7E5F18B2B34400E0E344 /* coin.wav in Resources */,
 				F1956DE518B1B7F0004D27D7 /* tempIcon40.png in Resources */,
 				DC9F5AC217E9C985000B593D /* devconfig.lua in Resources */,
 				DC5BCDB717CF88E500A5CB01 /* Default-Portrait~ipad.png in Resources */,
@@ -1360,6 +1377,7 @@
 				F1956E9918B1BF21004D27D7 /* Readme.txt in Resources */,
 				F1956E9D18B1BF21004D27D7 /* Readme.txt in Resources */,
 				DC5BCDAF17CF88E500A5CB01 /* Icon@2x~ipad.png in Resources */,
+				F1AD7E5918B2B04400E0E344 /* explosion.wav in Resources */,
 				F1956E8918B1BF21004D27D7 /* Cat-3.jpg in Resources */,
 				F1956DE218B1B776004D27D7 /* tempIcon29.png in Resources */,
 				F1956EB218B1BF21004D27D7 /* Lion-2.jpg in Resources */,
@@ -1446,7 +1464,9 @@
 				F1956EA318B1BF21004D27D7 /* CustomMacroHandler.m in Sources */,
 				F11CD09F18AEE67E007A9AAC /* GameScene.m in Sources */,
 				F1956EC118B1BF21004D27D7 /* ImageViewController.m in Sources */,
+				F1AD7E6518B2E58600E0E344 /* RemoveAdsIAPHelper.m in Sources */,
 				F1956EA018B1BF21004D27D7 /* CategoryViewController.m in Sources */,
+				F1AD7E6218B2E20900E0E344 /* IAPHelper.m in Sources */,
 				F10D1B9A18AF0FDE00AAF628 /* Laser.m in Sources */,
 				F14BD98418AF22C000B32C6A /* Plane.m in Sources */,
 				F11CD0A218AEE798007A9AAC /* Cloud.m in Sources */,
