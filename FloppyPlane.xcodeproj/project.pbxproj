@@ -206,6 +206,8 @@
 		F1956EDA18B1C2B7004D27D7 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1956ED918B1C2B7004D27D7 /* CoreData.framework */; };
 		F1956EE418B1D6AA004D27D7 /* removeAdsButton-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F1956EE218B1D6AA004D27D7 /* removeAdsButton-ipad.png */; };
 		F1956EE518B1D6AA004D27D7 /* removeAdsButton.png in Resources */ = {isa = PBXBuildFile; fileRef = F1956EE318B1D6AA004D27D7 /* removeAdsButton.png */; };
+		F19FF8A018C2664000986607 /* touchLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = F19FF89E18C2664000986607 /* touchLeft.png */; };
+		F19FF8A118C2664000986607 /* touchRight.png in Resources */ = {isa = PBXBuildFile; fileRef = F19FF89F18C2664000986607 /* touchRight.png */; };
 		F1AD7E5918B2B04400E0E344 /* explosion.wav in Resources */ = {isa = PBXBuildFile; fileRef = F1AD7E5818B2B04400E0E344 /* explosion.wav */; };
 		F1AD7E5F18B2B34400E0E344 /* coin.wav in Resources */ = {isa = PBXBuildFile; fileRef = F1AD7E5E18B2B34400E0E344 /* coin.wav */; };
 		F1AD7E6218B2E20900E0E344 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F1AD7E6118B2E20900E0E344 /* IAPHelper.m */; };
@@ -535,6 +537,8 @@
 		F1956ED918B1C2B7004D27D7 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
 		F1956EE218B1D6AA004D27D7 /* removeAdsButton-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "removeAdsButton-ipad.png"; sourceTree = "<group>"; };
 		F1956EE318B1D6AA004D27D7 /* removeAdsButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = removeAdsButton.png; sourceTree = "<group>"; };
+		F19FF89E18C2664000986607 /* touchLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = touchLeft.png; path = "../../Floppy Plane Images/touchLeft.png"; sourceTree = "<group>"; };
+		F19FF89F18C2664000986607 /* touchRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = touchRight.png; path = "../../Floppy Plane Images/touchRight.png"; sourceTree = "<group>"; };
 		F1AD7E5818B2B04400E0E344 /* explosion.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = explosion.wav; sourceTree = "<group>"; };
 		F1AD7E5E18B2B34400E0E344 /* coin.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = coin.wav; sourceTree = "<group>"; };
 		F1AD7E6018B2E20900E0E344 /* IAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IAPHelper.h; sourceTree = "<group>"; };
@@ -763,6 +767,8 @@
 				F10D1BA018AF116700AAF628 /* laserRight.png */,
 				F10D1B9E18AF116700AAF628 /* laserLeft.png */,
 				F10D1B9F18AF116700AAF628 /* laserRight-ipad.png */,
+				F19FF89E18C2664000986607 /* touchLeft.png */,
+				F19FF89F18C2664000986607 /* touchRight.png */,
 				DCD7EC42178C573500BBAFB0 /* AppDelegate.h */,
 				DCD7EC43178C573500BBAFB0 /* AppDelegate.m */,
 				DCD7EC48178C573500BBAFB0 /* ViewController.h */,
@@ -1349,6 +1355,7 @@
 				F11CD0B918AEFD74007A9AAC /* plane-ipad.png in Resources */,
 				DC5BCDB317CF88E500A5CB01 /* iTunesArtwork@2x in Resources */,
 				F1956EAE18B1BF21004D27D7 /* Cat-4.jpg in Resources */,
+				F19FF8A118C2664000986607 /* touchRight.png in Resources */,
 				F14BD9A018AFE64C00B32C6A /* playButton.png in Resources */,
 				DCEF82D617CFD4AC00157387 /* Icon-Small-50@2x.png in Resources */,
 				DCEF830D17CFDAAB00157387 /* ATTRIBUTIONS in Resources */,
@@ -1369,6 +1376,7 @@
 				F1956E8C18B1BF21004D27D7 /* Lion-2.jpg in Resources */,
 				F10FE62D18B082CA00D47E4F /* gameover-ipad.png in Resources */,
 				F1956EBA18B1BF21004D27D7 /* NumRefreshesMod5.png in Resources */,
+				F19FF8A018C2664000986607 /* touchLeft.png in Resources */,
 				F15A1F3018B042ED002679BB /* Smoke.sks in Resources */,
 				DC5BCDB417CF88E500A5CB01 /* Default-568h@2x.png in Resources */,
 				F1956DDD18B1B70E004D27D7 /* tempIcon120.png in Resources */,
