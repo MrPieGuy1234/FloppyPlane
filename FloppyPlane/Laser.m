@@ -36,7 +36,7 @@
             self.leftLaser.position = CGPointMake(-440, 0);
             self.rightLaser.position = CGPointMake(440, 0);
             self.scoreBody.position = CGPointMake(0, 100);
-            self.moveDown = [KKAction moveByX:0 y:-(height+300) duration:2.125];
+            self.moveDown = [KKAction moveByX:0 y:-(height+300) duration:2.25];
         } else {
             self.leftWall.position = CGPointMake(-28, 0);
             self.rightWall.position = CGPointMake(28, 0);

@@ -110,6 +110,7 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
             [self.removeAdsButton removeFromParent];
             self.parentView.banner.hidden = YES;
             self.restorePurchasesButton.hidden = YES;
+            self.parentView.iadBanner.hidden = YES;
             self.removeAdsPurchased = YES;
         } else {
             [view createBannerBottomAd];
@@ -132,6 +133,7 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
     self.removeAdsButton.hidden = YES;
     self.restorePurchasesButton.hidden = YES;
     self.parentView.banner.hidden = YES;
+    self.parentView.iadBanner.hidden = YES;
     self.removeAdsPurchased = YES;
 }
 - (void)update:(NSTimeInterval)currentTime {
@@ -225,6 +227,7 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
 - (void)startGame {
     NSLog(@"Game started!");
     self.parentView.banner.hidden = YES;
+    self.parentView.iadBanner.hidden = YES;
     if (self.plane != nil) {
         [self.plane removeFromParent];
         self.plane = nil;
@@ -249,7 +252,6 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
     self.scoreLabel.hidden = NO;
     self.score = 0;
     self.scoreLabel.text = [NSString stringWithFormat:@"%li", (long)self.score];
-    
     
     self.touchLeft = NO;
     self.touchRight = NO;
@@ -303,6 +305,7 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
     [self runAction:self.dieSound];
     if (!self.removeAdsPurchased) {
         self.parentView.banner.hidden = NO;
+        self.parentView.iadBanner.hidden = NO;
         self.removeAdsButton.hidden = NO;
         self.restorePurchasesButton.hidden = NO;
     }
