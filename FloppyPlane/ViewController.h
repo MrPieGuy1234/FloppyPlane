@@ -19,4 +19,5 @@
 @property (nonatomic, strong) GADBannerView *banner;
 @property (nonatomic, strong) GADInterstitial *interstitial;
 @property (nonatomic) GADRequest *request;
+@property (nonatomic, strong) NSArray *products;
 @end

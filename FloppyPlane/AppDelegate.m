@@ -6,6 +6,7 @@
 
 #import "AppDelegate.h"
 #import "GCHelper.h"
+#import "RemoveAdsIAPHelper.h"
 
 @implementation AppDelegate
 
@@ -13,7 +14,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 	BOOL returnValue = [super application:application didFinishLaunchingWithOptions:launchOptions];
-	
+	[RemoveAdsIAPHelper sharedInstance];
     
     // Override point for customization after application launch.
     return returnValue;

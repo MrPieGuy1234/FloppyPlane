@@ -13,12 +13,6 @@
 #import "GADInterstitial.h"
 #import "RemoveAdsIAPHelper.h"
 
-@interface ViewController () {
-    NSArray *_products;
-}
-
-@end
-
 @implementation ViewController
 
 -(void) presentFirstScene
@@ -34,7 +28,7 @@
     
     [[RemoveAdsIAPHelper sharedInstance] requestProductsWithCompletionHandler:^(BOOL success, NSArray *products) {
         if (success) {
-            _products = products;
+            self.products = products;
             NSLog(@"%li", (unsigned long)products.count);
         }
     }];

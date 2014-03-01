@@ -15,6 +15,7 @@
 #import "BMGlyphFont.h"
 #import "GCHelper.h"
 #import "ViewController.h"
+#import "RemoveAdsIAPHelper.h"
 #define IS_WIDESCREEN (fabs((double)[[UIScreen mainScreen]bounds].size.height - (double)568 ) < DBL_EPSILON)
 @implementation GameScene
 
@@ -28,6 +29,7 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
     if (self = [super initWithSize:size]) {
         self.backgroundColor = [UIColor colorWithRed:0 green:.7 blue:1 alpha:1];
         self.physicsWorld.contactDelegate = self;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(productPurchased:) name:IAPHelperProductPurchasedNotification object:nil];
         
         self.cloud1 = [[Cloud alloc] initWithImageNamed:[self convertImage:@"cloud60"] sceneWidth:self.frame.size.width sceneHeight:self.frame.size.height];
         self.cloud2 = [[Cloud alloc] initWithImageNamed:[self convertImage:@"cloud60"] sceneWidth:self.frame.size.width sceneHeight:self.frame.size.height];
@@ -55,6 +57,14 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
         self.leaderboardButton = [[Button alloc] initWithImageNamed:[self convertImage:@"leaderboardButton"] function:@selector(displayLeaderboard)];
         self.leaderboardButton.position = [self convertPoint:CGPointMake(160, 140)];
         
+        self.removeAdsButton = [[Button alloc] initWithImageNamed:[self convertImage:@"removeAdsButton"] function:@selector(removeAds)];
+        self.removeAdsButton.position = [self convertPoint:CGPointMake(160, 90)];
+        
+        self.restorePurchasesButton = [[Button alloc] initWithImageNamed:@"restorePurchases" function:@selector(restorePurchases)];
+        self.restorePurchasesButton.position = [self convertPoint:CGPointMake(70, 15)];
+        self.restorePurchasesButton.shouldGrow = NO;
+        self.restorePurchasesButton.userInteractionEnabled = YES;
+        
         self.scoreLabel = [SKLabelNode labelNodeWithFontNamed:@"Futura Condensed ExtraBold"];
         self.scoreLabel.hidden = YES;
         self.scoreLabel.zPosition = 999;
@@ -67,11 +77,6 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
         
         self.adCooldown = 0;
         
-        [view createBannerBottomAd];
-        [view createInterstitialAd];
-        
-        
-        
         self.coinSound = [SKAction playSoundFileNamed:@"coin.wav"];
         self.dieSound = [SKAction playSoundFileNamed:@"explosion.wav"];
         
@@ -80,8 +85,11 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
         if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
             [self.scoreLabel setScale:4];
             [self.endScoreLabel setScale:2];
+            [self.restorePurchasesButton setScale:0.4];
+            
         } else {
             [self.scoreLabel setScale:2];
+            [self.restorePurchasesButton setScale:0.2];
             // [self.endScoreLabel setScale:.5];
         }
         
@@ -95,8 +103,36 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
         [self addChild:self.cloud1];
         [self addChild:self.cloud2];
         [self addChild:self.cloud3];
+        [self addChild:self.removeAdsButton];
+        [self addChild:self.restorePurchasesButton];
+        
+        if ([[RemoveAdsIAPHelper sharedInstance] productPurchased:@"removeAds"]) {
+            [self.removeAdsButton removeFromParent];
+            self.parentView.banner.hidden = YES;
+            self.restorePurchasesButton.hidden = YES;
+            self.removeAdsPurchased = YES;
+        } else {
+            [view createBannerBottomAd];
+            [view createInterstitialAd];
+        }
     }
     return self;
+}
+- (void)removeAds {
+    NSLog(@"Removing ads...");
+    [[RemoveAdsIAPHelper sharedInstance] buyProduct:self.parentView.products[0]];
+    if ([[RemoveAdsIAPHelper sharedInstance] productPurchased:@"removeAds"]) {
+        [self.removeAdsButton removeFromParent];
+    }
+}
+- (void)restorePurchases {
+    [[RemoveAdsIAPHelper sharedInstance] restoreCompletedTransactions];
+}
+- (void)productPurchased:(NSNotification *)notifiction {
+    self.removeAdsButton.hidden = YES;
+    self.restorePurchasesButton.hidden = YES;
+    self.parentView.banner.hidden = YES;
+    self.removeAdsPurchased = YES;
 }
 - (void)update:(NSTimeInterval)currentTime {
     CFTimeInterval timeSinceLast = currentTime - self.lastUpdateTimeInterval;
@@ -198,6 +234,8 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
     self.leaderboardButton.hidden = YES;
     self.gameOver.hidden = YES;
     self.endScoreLabel.hidden = YES;
+    self.restorePurchasesButton.hidden = YES;
+    self.removeAdsButton.hidden = YES;
     
     self.scoreLabel.hidden = NO;
     self.score = 0;
@@ -210,11 +248,13 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
     self.playButton.userInteractionEnabled = NO;
     self.rateButton.userInteractionEnabled = NO;
     self.leaderboardButton.userInteractionEnabled = NO;
+    self.removeAdsButton.userInteractionEnabled = NO;
+    self.restorePurchasesButton.userInteractionEnabled = NO;
     
     self.gameHasStarted = YES;
 }
 - (void)rate {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://apple.com"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/app/id823235103"]];
 }
 - (void)displayLeaderboard {
     
@@ -252,7 +292,11 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
 - (void)endGame {
     
     [self runAction:self.dieSound];
-    self.parentView.banner.hidden = NO;
+    if (!self.removeAdsPurchased) {
+        self.parentView.banner.hidden = NO;
+        self.removeAdsButton.hidden = NO;
+        self.restorePurchasesButton.hidden = NO;
+    }
     self.gameHasStarted = NO;
     self.plane.smoke.hidden = NO;
     
@@ -267,11 +311,14 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
     self.rateButton.userInteractionEnabled = YES;
     self.leaderboardButton.userInteractionEnabled = YES;
     self.scoreLabel.hidden = YES;
+    self.removeAdsButton.userInteractionEnabled = YES;
+    self.restorePurchasesButton.userInteractionEnabled = YES;
     
     self.gameOver.alpha = 0.0F;
     self.playButton.alpha = 0.0F;
     self.rateButton.alpha = 0.0F;
     self.leaderboardButton.alpha = 0.0F;
+    self.removeAdsButton.alpha = 0.0F;
     
     self.timeSinceLastLift = 0;
     self.timeSinceLastLaser = 0;
@@ -286,10 +333,11 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
     [self.playButton runAction:gameOverFadeIn];
     [self.rateButton runAction:gameOverFadeIn];
     [self.leaderboardButton runAction:gameOverFadeIn];
+    [self.removeAdsButton runAction:gameOverFadeIn];
     [self.plane runAction:[SKAction sequence:@[fadePlaneOut, resetPlane]]];
     
     [self runAction:[SKAction waitForDuration:.5] completion:^{
-        if (self.adCooldown == 5) {
+        if (self.adCooldown == 5 && !self.removeAdsPurchased) {
             [self.parentView presentInterstitial];
             [self.parentView createInterstitialAd];
             self.adCooldown = 1;

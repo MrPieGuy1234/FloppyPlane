@@ -17,7 +17,7 @@ local config =
 	developmentWebServerURL = "http://10.0.0.8:32111",
 
 	-- quickly turn on/off the debug labels without having to change the individual flags below
-	disableAllDebugLabels = NO,
+	disableAllDebugLabels = YES,
 
 	-- common Sprite Kit labels
 	showsFPS = NO,

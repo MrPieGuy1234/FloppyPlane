@@ -24,6 +24,8 @@
 @property (nonatomic, strong) Button *playButton;
 @property (nonatomic, strong) Button *rateButton;
 @property (nonatomic, strong) Button *leaderboardButton;
+@property (nonatomic, strong) Button *removeAdsButton;
+@property (nonatomic, strong) Button *restorePurchasesButton;
 @property (nonatomic) NSTimeInterval lastUpdateTimeInterval;
 @property (nonatomic) NSTimeInterval timeSinceLastLaser;
 @property (nonatomic) NSTimeInterval timeSinceLastLift;
@@ -31,6 +33,7 @@
 @property (nonatomic) BOOL touchLeft;
 @property (nonatomic) BOOL touchRight;
 @property (nonatomic) BOOL gameHasStarted;
+@property (nonatomic) BOOL removeAdsPurchased;
 @property (nonatomic) NSInteger score;
 @property (nonatomic) SKLabelNode *scoreLabel;
 @property (nonatomic) SKLabelNode *endScoreLabel;
@@ -38,6 +41,7 @@
 @property (nonatomic, strong) SKAction *coinSound;
 @property (nonatomic, strong) SKAction *dieSound;
 @property (nonatomic) NSInteger adCooldown;
+
 
 - (void)startGame;
 - (void)rate;

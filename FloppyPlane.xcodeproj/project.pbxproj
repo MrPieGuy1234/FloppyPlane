@@ -210,6 +210,7 @@
 		F1AD7E6218B2E20900E0E344 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F1AD7E6118B2E20900E0E344 /* IAPHelper.m */; };
 		F1AD7E6518B2E58600E0E344 /* RemoveAdsIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F1AD7E6418B2E58600E0E344 /* RemoveAdsIAPHelper.m */; };
 		F1ECD09818B1673000E2D966 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1ECD09718B1673000E2D966 /* FacebookSDK.framework */; };
+		F1F2919718B44C1600507BDC /* restorePurchases.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F2919618B44C1600507BDC /* restorePurchases.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -540,6 +541,7 @@
 		F1AD7E6318B2E58600E0E344 /* RemoveAdsIAPHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoveAdsIAPHelper.h; sourceTree = "<group>"; };
 		F1AD7E6418B2E58600E0E344 /* RemoveAdsIAPHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoveAdsIAPHelper.m; sourceTree = "<group>"; };
 		F1ECD09718B1673000E2D966 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		F1F2919618B44C1600507BDC /* restorePurchases.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = restorePurchases.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -778,6 +780,7 @@
 				F11CD0A118AEE798007A9AAC /* Cloud.m */,
 				F14BD9A518AFF03B00B32C6A /* Button.h */,
 				F14BD9A618AFF03B00B32C6A /* Button.m */,
+				F1F2919618B44C1600507BDC /* restorePurchases.png */,
 				F1956DD118B18648004D27D7 /* GCHelper.h */,
 				F1956DD218B18648004D27D7 /* GCHelper.m */,
 				F14BD9B018B0309500B32C6A /* rect.png */,
@@ -1371,6 +1374,7 @@
 				F1956DDC18B1B70E004D27D7 /* tempIcon76.png in Resources */,
 				F1956ECC18B1BF21004D27D7 /* README.txt in Resources */,
 				F1956EBF18B1BF21004D27D7 /* Tiger-1.jpg in Resources */,
+				F1F2919718B44C1600507BDC /* restorePurchases.png in Resources */,
 				F1956EAC18B1BF21004D27D7 /* Cat-2.jpg in Resources */,
 				F1956E8A18B1BF21004D27D7 /* Cat-4.jpg in Resources */,
 				F1956E8418B1BF21004D27D7 /* Bunny-1.jpg in Resources */,
@@ -1560,6 +1564,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Donald Lawrence (WG8875WVRH)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Donny/Desktop/FloppyPlane,
@@ -1579,7 +1585,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "FloppyPlane-iOS";
-				PROVISIONING_PROFILE = "8B90CFBE-C79A-447A-9D87-F2B8A8C1B2C9";
+				PROVISIONING_PROFILE = "D9C4AC1D-D14F-4D09-A635-4B18F3AE37C3";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
@@ -1590,10 +1596,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Donald Lawrence (WG8875WVRH)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Donny/Desktop/FloppyPlane,
 				);
+				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
 				INFOPLIST_FILE = "FloppyPlane/FloppyPlane-iOS-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1605,7 +1614,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "FloppyPlane-iOS";
-				PROVISIONING_PROFILE = "8B90CFBE-C79A-447A-9D87-F2B8A8C1B2C9";
+				PROVISIONING_PROFILE = "D9C4AC1D-D14F-4D09-A635-4B18F3AE37C3";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;

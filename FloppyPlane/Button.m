@@ -17,6 +17,7 @@
         self.userInteractionEnabled = YES;
         self.zPosition = 999;
         self.anchorPoint = CGPointMake(.5, .5);
+        self.shouldGrow = YES;
         
         self.selector = function;
         self.originalSize = CGSizeMake(self.size.width, self.size.height);
@@ -30,7 +31,9 @@
         for (UITouch *touch in touches) {
             CGPoint location = [touch locationInNode:self];
             if (location.x > -(self.frame.size.width/2) && location.x < self.frame.size.width/2 && location.y > -(self.frame.size.height/2) && location.y < self.frame.size.height/2) {
-                self.size = CGSizeMake(self.size.width*1.5, self.size.height*1.5);
+                if (self.shouldGrow) {
+                    self.size = CGSizeMake(self.size.width*1.5, self.size.height*1.5);
+                }
             }
         }
     }
@@ -40,10 +43,16 @@
         
         for (UITouch *touch in touches) {
             CGPoint location = [touch locationInNode:self];
-            self.size = self.originalSize;
-            if (location.x > -(self.frame.size.width/2) && location.x < self.frame.size.width/2 && location.y > -(self.frame.size.height/2) && location.y < self.frame.size.height/2) {
+            
+            if (self.shouldGrow) {
+                self.size = self.originalSize;
+                if (location.x > -(self.frame.size.width/2) && location.x < self.frame.size.width/2 && location.y > -(self.frame.size.height/2) && location.y < self.frame.size.height/2) {
+                    [self.parent performSelector:self.selector withObject:nil];
+                }
+            } else {
                 [self.parent performSelector:self.selector withObject:nil];
             }
+            
         }
     }
 }
@@ -51,7 +60,9 @@
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         if (location.x < -(self.frame.size.width/2) || location.x > self.frame.size.width/2 || location.y < -(self.frame.size.height/2) || location.y > self.frame.size.height/2) {
-            self.size = self.originalSize;
+            if (self.shouldGrow) {
+                self.size = self.originalSize;
+            }
         }
     }
 }
