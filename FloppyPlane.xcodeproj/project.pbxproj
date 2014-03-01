@@ -1565,7 +1565,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Donald Lawrence (WG8875WVRH)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Donny Lawrence (HDLLG2B6DV)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Donny/Desktop/FloppyPlane,
@@ -1585,7 +1585,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "FloppyPlane-iOS";
-				PROVISIONING_PROFILE = "D9C4AC1D-D14F-4D09-A635-4B18F3AE37C3";
+				PROVISIONING_PROFILE = "8B90CFBE-C79A-447A-9D87-F2B8A8C1B2C9";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;
@@ -1597,7 +1597,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Donald Lawrence (WG8875WVRH)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Donny Lawrence (HDLLG2B6DV)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/Donny/Desktop/FloppyPlane,
@@ -1614,7 +1614,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "FloppyPlane-iOS";
-				PROVISIONING_PROFILE = "D9C4AC1D-D14F-4D09-A635-4B18F3AE37C3";
+				PROVISIONING_PROFILE = "8B90CFBE-C79A-447A-9D87-F2B8A8C1B2C9";
 				SDKROOT = iphoneos;
 				VALID_ARCHS = "armv7 armv7s arm64";
 				WRAPPER_EXTENSION = app;

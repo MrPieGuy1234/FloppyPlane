@@ -154,14 +154,14 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
                 [self generateLaser];
             }
         }
-        if (self.touchRight) {
+        if (self.touchRight && self.rightLastTouched) {
             self.timeSinceLastLift += timeSinceLast;
             if (self.plane.physicsBody.velocity.dx > self.plane.maxVelocity) {
                 self.plane.physicsBody.velocity = CGVectorMake(self.plane.maxVelocity, 0);
             }
             [self.plane.physicsBody applyForce:CGVectorMake(self.timeSinceLastLift*self.plane.velMultiplier, 0)];
         }
-        if (self.touchLeft) {
+        if (self.touchLeft && !self.rightLastTouched) {
             self.timeSinceLastLift += timeSinceLast;
             if (self.plane.physicsBody.velocity.dx < -self.plane.maxVelocity) {
                 self.plane.physicsBody.velocity = CGVectorMake(-self.plane.maxVelocity, 0);
@@ -190,14 +190,14 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
     self.timeSinceLastLift = 0;
     CGPoint location = [touch locationInNode:self];
     if (self.gameHasStarted) {
-        if (!self.touchLeft && !self.touchRight) {
-            if (location.x >= self.frame.size.width/2) {
-                self.touchRight = YES;
-                [self.plane runAction:self.plane.rotatePlaneRight];
-            } else {
-                self.touchLeft = YES;
-                [self.plane runAction:self.plane.rotatePlaneLeft];
-            }
+        if (location.x >= self.frame.size.width/2) {
+            self.touchRight = YES;
+            self.rightLastTouched = YES;
+            [self.plane runAction:self.plane.rotatePlaneRight];
+        } else {
+            self.touchLeft = YES;
+            self.rightLastTouched = NO;
+            [self.plane runAction:self.plane.rotatePlaneLeft];
         }
     }
 }
@@ -205,9 +205,12 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         if (self.gameHasStarted) {
-            if (self.touchLeft != self.touchRight) {
+            if (location.x >= self.frame.size.width/2) {
                 self.touchRight = NO;
+            } else {
                 self.touchLeft = NO;
+            }
+            if (!self.touchLeft && !self.touchRight) {
                 [self.plane runAction:self.plane.rotatePlaneNormal];
             }
         }
@@ -336,7 +339,7 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
     [self.removeAdsButton runAction:gameOverFadeIn];
     [self.plane runAction:[SKAction sequence:@[fadePlaneOut, resetPlane]]];
     
-    [self runAction:[SKAction waitForDuration:.5] completion:^{
+    [self runAction:[SKAction waitForDuration:.2] completion:^{
         if (self.adCooldown == 5 && !self.removeAdsPurchased) {
             [self.parentView presentInterstitial];
             [self.parentView createInterstitialAd];

@@ -34,6 +34,7 @@
 @property (nonatomic) BOOL touchRight;
 @property (nonatomic) BOOL gameHasStarted;
 @property (nonatomic) BOOL removeAdsPurchased;
+@property (nonatomic) BOOL rightLastTouched;
 @property (nonatomic) NSInteger score;
 @property (nonatomic) SKLabelNode *scoreLabel;
 @property (nonatomic) SKLabelNode *endScoreLabel;
