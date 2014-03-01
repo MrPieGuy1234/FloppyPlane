@@ -140,6 +140,7 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
     [self.cloud1 update:currentTime];
     [self.cloud2 update:currentTime];
     [self.cloud3 update:currentTime];
+    self.timeSinceLastScore += timeSinceLast;
     
     if (self.gameHasStarted) {
         self.timeSinceLastLaser += timeSinceLast;
@@ -385,9 +386,10 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
         }
     }
     if ((firstBody.categoryBitMask & shipCategory) != 0 && (secondBody.categoryBitMask & scoreBodyCategory) !=0) {
-        if (self.gameHasStarted) {
+        if (self.gameHasStarted && self.timeSinceLastScore > .5) {
             [self runAction:self.coinSound];
             self.score += 1;
+            self.timeSinceLastScore = 0;
             [self.scoreLabel setText:[NSString stringWithFormat:@"%li", (long)self.score]];
         }
     }

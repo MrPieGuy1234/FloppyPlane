@@ -29,6 +29,7 @@
 @property (nonatomic) NSTimeInterval lastUpdateTimeInterval;
 @property (nonatomic) NSTimeInterval timeSinceLastLaser;
 @property (nonatomic) NSTimeInterval timeSinceLastLift;
+@property (nonatomic) NSTimeInterval timeSinceLastScore;
 @property (nonatomic) BOOL lastGenOnRight;
 @property (nonatomic) BOOL touchLeft;
 @property (nonatomic) BOOL touchRight;
