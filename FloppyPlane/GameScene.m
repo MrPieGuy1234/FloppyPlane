@@ -75,6 +75,14 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
         self.endScoreLabel.position = [self convertPoint:CGPointMake(160, 270)];
         self.endScoreLabel.hidden = YES;
         
+        self.touchRightSprite = [SKSpriteNode spriteNodeWithImageNamed:[self convertImage:@"touchRight"]];
+        self.touchRightSprite.position = [self convertPoint:CGPointMake(250, 160)];
+        self.touchRightSprite.texture.filteringMode = SKTextureFilteringNearest;
+        self.touchRightSprite.hidden = YES;
+        self.touchLeftSprite = [SKSpriteNode spriteNodeWithImageNamed:[self convertImage:@"touchLeft"]];
+        self.touchLeftSprite.position = [self convertPoint:CGPointMake(70, 160)];
+        self.touchLeftSprite.texture.filteringMode = SKTextureFilteringNearest;
+        self.touchLeftSprite.hidden = YES;
         self.adCooldown = 0;
         
         self.coinSound = [SKAction playSoundFileNamed:@"coin.wav"];
@@ -105,6 +113,8 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
         [self addChild:self.cloud3];
         [self addChild:self.removeAdsButton];
         [self addChild:self.restorePurchasesButton];
+        [self addChild:self.touchLeftSprite];
+        [self addChild:self.touchRightSprite];
         
         if ([[RemoveAdsIAPHelper sharedInstance] productPurchased:@"removeAds"]) {
             [self.removeAdsButton removeFromParent];
@@ -139,6 +149,11 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
 - (void)update:(NSTimeInterval)currentTime {
     CFTimeInterval timeSinceLast = currentTime - self.lastUpdateTimeInterval;
     self.lastUpdateTimeInterval = currentTime;
+    if (timeSinceLast > .5) {
+        timeSinceLast = 0;
+        self.touchRight = NO;
+        self.touchLeft = NO;
+    }
     [self.cloud1 update:currentTime];
     [self.cloud2 update:currentTime];
     [self.cloud3 update:currentTime];
@@ -146,20 +161,22 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
     
     if (self.gameHasStarted) {
         self.timeSinceLastLaser += timeSinceLast;
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-            if (self.timeSinceLastLaser >= .9) {
-                self.timeSinceLastLaser = 0;
-                [self generateLaser];
-            }
-        } else if (IS_WIDESCREEN) {
-            if (self.timeSinceLastLaser >= .9) {
-                self.timeSinceLastLaser = 0;
-                [self generateLaser];
-            }
-        } else {
-            if (self.timeSinceLastLaser >=1) {
-                self.timeSinceLastLaser = 0;
-                [self generateLaser];
+        if (self.firstTouchReceieved) {
+            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+                if (self.timeSinceLastLaser >= .9) {
+                    self.timeSinceLastLaser = 0;
+                    [self generateLaser];
+                }
+            } else if (IS_WIDESCREEN) {
+                if (self.timeSinceLastLaser >= .9) {
+                    self.timeSinceLastLaser = 0;
+                    [self generateLaser];
+                }
+            } else {
+                if (self.timeSinceLastLaser >=1) {
+                    self.timeSinceLastLaser = 0;
+                    [self generateLaser];
+                }
             }
         }
         if (self.touchRight && self.rightLastTouched) {
@@ -198,6 +215,11 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
     self.timeSinceLastLift = 0;
     CGPoint location = [touch locationInNode:self];
     if (self.gameHasStarted) {
+        if (!self.touchLeftSprite.hidden || !self.touchRightSprite.hidden) {
+            self.touchLeftSprite.hidden = YES;
+            self.touchRightSprite.hidden = YES;
+            self.firstTouchReceieved = YES;
+        }
         if (location.x >= self.frame.size.width/2) {
             self.touchRight = YES;
             self.rightLastTouched = YES;
@@ -228,6 +250,7 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
     NSLog(@"Game started!");
     self.parentView.banner.hidden = YES;
     self.parentView.iadBanner.hidden = YES;
+    self.firstTouchReceieved = NO;
     if (self.plane != nil) {
         [self.plane removeFromParent];
         self.plane = nil;
@@ -250,6 +273,8 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
     self.removeAdsButton.hidden = YES;
     
     self.scoreLabel.hidden = NO;
+    self.touchLeftSprite.hidden = NO;
+    self.touchRightSprite.hidden = NO;
     self.score = 0;
     self.scoreLabel.text = [NSString stringWithFormat:@"%li", (long)self.score];
     
@@ -263,6 +288,8 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
     self.restorePurchasesButton.userInteractionEnabled = NO;
     
     self.gameHasStarted = YES;
+    
+    
 }
 - (void)rate {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"itms-apps://itunes.apple.com/app/id823235103"]];
@@ -272,7 +299,7 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
     [[GCHelper sharedInstance] showLeaderboard:self.view.window.rootViewController];
 }
 - (void)generateLaser {
-    if (self.gameHasStarted) {
+    if (self.gameHasStarted && !self.view.paused) {
         if (self.lastGenOnRight) {
             NSInteger randX = (int)(self.frame.size.width/(5+(1/3))) + arc4random() % (int)((self.frame.size.width/2 - self.frame.size.width/(5+(1/3)) + 1));
             self.lastGenOnRight = NO;

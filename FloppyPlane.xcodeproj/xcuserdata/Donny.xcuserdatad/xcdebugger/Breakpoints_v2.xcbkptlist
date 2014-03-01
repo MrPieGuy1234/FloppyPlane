@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FloppyPlane/GameScene.m"
-            timestampString = "415390679.949751"
+            timestampString = "415401171.52416"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
             landmarkName = "-update:"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FloppyPlane/GameScene.m"
-            timestampString = "415390679.949751"
+            timestampString = "415402981.968779"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "318"
-            endingLineNumber = "318"
+            startingLineNumber = "345"
+            endingLineNumber = "345"
             landmarkName = "-endGame"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FloppyPlane/GameScene.m"
-            timestampString = "415390679.949751"
+            timestampString = "415402981.968779"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "332"
-            endingLineNumber = "332"
+            startingLineNumber = "359"
+            endingLineNumber = "359"
             landmarkName = "-endGame"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FloppyPlane/GameScene.m"
-            timestampString = "415390679.949751"
+            timestampString = "415402981.968779"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "340"
-            endingLineNumber = "340"
+            startingLineNumber = "367"
+            endingLineNumber = "367"
             landmarkName = "-endGame"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FloppyPlane/GameScene.m"
-            timestampString = "415390679.949751"
+            timestampString = "415402981.968779"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "352"
-            endingLineNumber = "352"
+            startingLineNumber = "379"
+            endingLineNumber = "379"
             landmarkName = "-endGame"
             landmarkType = "5">
             <Locations>
@@ -120,11 +120,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FloppyPlane/GameScene.m"
-            timestampString = "415390679.949751"
+            timestampString = "415402981.968779"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "364"
-            endingLineNumber = "364"
+            startingLineNumber = "391"
+            endingLineNumber = "391"
             landmarkName = "-endGame"
             landmarkType = "5">
          </BreakpointContent>
@@ -136,11 +136,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FloppyPlane/GameScene.m"
-            timestampString = "415390679.949751"
+            timestampString = "415402981.968779"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "366"
-            endingLineNumber = "366"
+            startingLineNumber = "393"
+            endingLineNumber = "393"
             landmarkName = "-endGame"
             landmarkType = "5">
          </BreakpointContent>
@@ -152,11 +152,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FloppyPlane/GameScene.m"
-            timestampString = "415390679.949751"
+            timestampString = "415401171.52416"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "226"
-            endingLineNumber = "226"
+            startingLineNumber = "248"
+            endingLineNumber = "248"
             landmarkName = "-touchesEnded:withEvent:"
             landmarkType = "5">
          </BreakpointContent>
@@ -168,11 +168,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FloppyPlane/GameScene.m"
-            timestampString = "415390679.949751"
+            timestampString = "415402981.968779"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "359"
-            endingLineNumber = "359"
+            startingLineNumber = "386"
+            endingLineNumber = "386"
             landmarkName = "-endGame"
             landmarkType = "5">
             <Locations>
@@ -214,11 +214,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FloppyPlane/GameScene.m"
-            timestampString = "415390679.949751"
+            timestampString = "415402981.968779"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "347"
-            endingLineNumber = "347"
+            startingLineNumber = "374"
+            endingLineNumber = "374"
             landmarkName = "-endGame"
             landmarkType = "5">
          </BreakpointContent>
@@ -230,11 +230,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FloppyPlane/GameScene.m"
-            timestampString = "415390679.949751"
+            timestampString = "415402981.968779"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "372"
-            endingLineNumber = "372"
+            startingLineNumber = "399"
+            endingLineNumber = "399"
             landmarkName = "-resetPlane"
             landmarkType = "5">
          </BreakpointContent>
@@ -246,11 +246,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FloppyPlane/GameScene.m"
-            timestampString = "415390679.949751"
+            timestampString = "415402981.968779"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "371"
-            endingLineNumber = "371"
+            startingLineNumber = "398"
+            endingLineNumber = "398"
             landmarkName = "-endGame"
             landmarkType = "5">
          </BreakpointContent>
@@ -262,11 +262,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FloppyPlane/GameScene.m"
-            timestampString = "415390679.949751"
+            timestampString = "415402981.968779"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "374"
-            endingLineNumber = "374"
+            startingLineNumber = "401"
+            endingLineNumber = "401"
             landmarkName = "-resetPlane"
             landmarkType = "5">
          </BreakpointContent>

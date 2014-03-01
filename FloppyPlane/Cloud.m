@@ -26,6 +26,7 @@
     if (self.position.y <= -200) {
         [self removeAllActions];
         self.position = CGPointMake(arc4random() % (int)self.sceneWidth, self.sceneHeight+200);
+        self.moveDown = [KKAction moveByX:0 y:-(self.sceneHeight+450) duration:(3 + arc4random() % (7 - 3 + 1))];
         [self runAction:self.moveDown];
     }
     

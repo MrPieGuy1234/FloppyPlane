@@ -21,6 +21,8 @@
 @property (nonatomic, strong) Plane *plane;
 @property (nonatomic, strong) SKSpriteNode *logo;
 @property (nonatomic, strong) SKSpriteNode *gameOver;
+@property (nonatomic, strong) SKSpriteNode *touchLeftSprite;
+@property (nonatomic, strong) SKSpriteNode *touchRightSprite;
 @property (nonatomic, strong) Button *playButton;
 @property (nonatomic, strong) Button *rateButton;
 @property (nonatomic, strong) Button *leaderboardButton;
@@ -36,6 +38,7 @@
 @property (nonatomic) BOOL gameHasStarted;
 @property (nonatomic) BOOL removeAdsPurchased;
 @property (nonatomic) BOOL rightLastTouched;
+@property (nonatomic) BOOL firstTouchReceieved;
 @property (nonatomic) NSInteger score;
 @property (nonatomic) SKLabelNode *scoreLabel;
 @property (nonatomic) SKLabelNode *endScoreLabel;

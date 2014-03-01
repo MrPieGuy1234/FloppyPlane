@@ -45,11 +45,12 @@
 }
 - (void)createBannerBottomAd {
     self.iadBanner = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
+    CGRect iadBannerFrame = self.iadBanner.frame;
+    iadBannerFrame.origin.y = self.view.frame.size.height - self.iadBanner.frame.size.height;
+    self.iadBanner.frame = iadBannerFrame;
     [self.iadBanner setDelegate:self];
     [self.kkView addSubview:self.iadBanner];
-}
-- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
-    [self.iadBanner performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
+    
     self.banner = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
     self.banner.adUnitID = @"ca-app-pub-4565571048501936/9340871203";
     self.banner.rootViewController = self;
@@ -57,6 +58,10 @@
         self.banner.adSize = kGADAdSizeLeaderboard;
     }
     [self.kkView addSubview:self.banner];
+
+}
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+    [self.iadBanner performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
 }
 - (void)createInterstitialAd {
     self.interstitial = [[GADInterstitial alloc] init];
