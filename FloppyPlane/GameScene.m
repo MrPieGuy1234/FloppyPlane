@@ -149,8 +149,13 @@ static const uint32_t scoreBodyCategory = 0x1 << 4;
                 self.timeSinceLastLaser = 0;
                 [self generateLaser];
             }
-        } else {
+        } else if (IS_WIDESCREEN) {
             if (self.timeSinceLastLaser >= .9) {
+                self.timeSinceLastLaser = 0;
+                [self generateLaser];
+            }
+        } else {
+            if (self.timeSinceLastLaser >=1) {
                 self.timeSinceLastLaser = 0;
                 [self generateLaser];
             }

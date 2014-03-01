@@ -34,7 +34,7 @@
     }];
     
     self.request = [GADRequest request];
-    self.request.testDevices = @[@"b41e97b13f0801f8bcc3ede1edb7437f", @"00a197fca7eb71468a015ff07eb9101b"];
+    // self.request.testDevices = @[@"b41e97b13f0801f8bcc3ede1edb7437f", @"00a197fca7eb71468a015ff07eb9101b"];
     [self.banner loadRequest:self.request];
 }
 - (BOOL)shouldAutorotate {
@@ -44,6 +44,12 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)createBannerBottomAd {
+    self.iadBanner = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
+    [self.iadBanner setDelegate:self];
+    [self.kkView addSubview:self.iadBanner];
+}
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+    [self.iadBanner performSelectorOnMainThread:@selector(removeFromSuperview) withObject:nil waitUntilDone:NO];
     self.banner = [[GADBannerView alloc] initWithAdSize:kGADAdSizeBanner];
     self.banner.adUnitID = @"ca-app-pub-4565571048501936/9340871203";
     self.banner.rootViewController = self;
@@ -51,8 +57,6 @@
         self.banner.adSize = kGADAdSizeLeaderboard;
     }
     [self.kkView addSubview:self.banner];
-    
-    
 }
 - (void)createInterstitialAd {
     self.interstitial = [[GADInterstitial alloc] init];

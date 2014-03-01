@@ -96,6 +96,7 @@
 		F11CD0BA18AEFD74007A9AAC /* plane.png in Resources */ = {isa = PBXBuildFile; fileRef = F11CD0B818AEFD74007A9AAC /* plane.png */; };
 		F11CD0BD18AEFE8D007A9AAC /* cloud60-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F11CD0BB18AEFE8D007A9AAC /* cloud60-ipad.png */; };
 		F11CD0BE18AEFE8D007A9AAC /* cloud60.png in Resources */ = {isa = PBXBuildFile; fileRef = F11CD0BC18AEFE8D007A9AAC /* cloud60.png */; };
+		F123C5BB18C1AB2700DAEE22 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F123C5BA18C1AB2700DAEE22 /* iAd.framework */; };
 		F14BD98418AF22C000B32C6A /* Plane.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BD98318AF22C000B32C6A /* Plane.m */; };
 		F14BD99F18AFE64C00B32C6A /* playButton-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F14BD99718AFE64C00B32C6A /* playButton-ipad.png */; };
 		F14BD9A018AFE64C00B32C6A /* playButton.png in Resources */ = {isa = PBXBuildFile; fileRef = F14BD99818AFE64C00B32C6A /* playButton.png */; };
@@ -209,7 +210,6 @@
 		F1AD7E5F18B2B34400E0E344 /* coin.wav in Resources */ = {isa = PBXBuildFile; fileRef = F1AD7E5E18B2B34400E0E344 /* coin.wav */; };
 		F1AD7E6218B2E20900E0E344 /* IAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F1AD7E6118B2E20900E0E344 /* IAPHelper.m */; };
 		F1AD7E6518B2E58600E0E344 /* RemoveAdsIAPHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F1AD7E6418B2E58600E0E344 /* RemoveAdsIAPHelper.m */; };
-		F1ECD09818B1673000E2D966 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1ECD09718B1673000E2D966 /* FacebookSDK.framework */; };
 		F1F2919718B44C1600507BDC /* restorePurchases.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F2919618B44C1600507BDC /* restorePurchases.png */; };
 /* End PBXBuildFile section */
 
@@ -362,6 +362,7 @@
 		F11CD0B818AEFD74007A9AAC /* plane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plane.png; path = ../plane.png; sourceTree = "<group>"; };
 		F11CD0BB18AEFE8D007A9AAC /* cloud60-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cloud60-ipad.png"; sourceTree = "<group>"; };
 		F11CD0BC18AEFE8D007A9AAC /* cloud60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cloud60.png; sourceTree = "<group>"; };
+		F123C5BA18C1AB2700DAEE22 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.0.sdk/System/Library/Frameworks/iAd.framework; sourceTree = DEVELOPER_DIR; };
 		F14BD98218AF22C000B32C6A /* Plane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plane.h; sourceTree = "<group>"; };
 		F14BD98318AF22C000B32C6A /* Plane.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Plane.m; sourceTree = "<group>"; };
 		F14BD99718AFE64C00B32C6A /* playButton-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "playButton-ipad.png"; path = "../playButton-ipad.png"; sourceTree = "<group>"; };
@@ -571,6 +572,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F123C5BB18C1AB2700DAEE22 /* iAd.framework in Frameworks */,
 				F1956EDA18B1C2B7004D27D7 /* CoreData.framework in Frameworks */,
 				F193EDBA18B1644500197084 /* StoreKit.framework in Frameworks */,
 				F1956ED618B1C181004D27D7 /* AdSupport.framework in Frameworks */,
@@ -599,7 +601,6 @@
 				DCFE4D7217B2B502006675A2 /* CoreMedia.framework in Frameworks */,
 				F193EDAA18B1640C00197084 /* Parse.framework in Frameworks */,
 				DCD7EC54178C57FC00BBAFB0 /* CoreGraphics.framework in Frameworks */,
-				F1ECD09818B1673000E2D966 /* FacebookSDK.framework in Frameworks */,
 				DC19538317C1248C00EC526C /* OpenAL.framework in Frameworks */,
 				DCD7EC56178C57FC00BBAFB0 /* SpriteKit.framework in Frameworks */,
 				F1956ECB18B1BF21004D27D7 /* libGoogleAdMobAds.a in Frameworks */,
@@ -824,6 +825,7 @@
 		DCDD2DAA1769FD0A00F307CD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F123C5BA18C1AB2700DAEE22 /* iAd.framework */,
 				F1956ED918B1C2B7004D27D7 /* CoreData.framework */,
 				F1956ED318B1C181004D27D7 /* AdSupport.framework */,
 				F1956ED418B1C181004D27D7 /* CoreTelephony.framework */,

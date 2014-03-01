@@ -5,10 +5,11 @@
  */
 
 #import <GameKit/GameKit.h>
+#import <iAd/iAd.h>
 #import "GADBannerView.h"
 #import "GADInterstitial.h"
 
-@interface ViewController : KKViewController <GKGameCenterControllerDelegate>
+@interface ViewController : KKViewController <GKGameCenterControllerDelegate, ADBannerViewDelegate, GADBannerViewDelegate>
 
 - (void)createBannerBottomAd;
 - (void)createInterstitialAd;
@@ -18,6 +19,7 @@
 
 @property (nonatomic, strong) GADBannerView *banner;
 @property (nonatomic, strong) GADInterstitial *interstitial;
+@property (nonatomic, strong) ADBannerView *iadBanner;
 @property (nonatomic) GADRequest *request;
 @property (nonatomic, strong) NSArray *products;
 @end
